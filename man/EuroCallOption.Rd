@@ -8,6 +8,8 @@ EuroCallOption(x, K)
 }
 \arguments{
 \item{x}{the stock price}
+
+\item{K}{the strike price}
 }
 \value{
 The value of European call option

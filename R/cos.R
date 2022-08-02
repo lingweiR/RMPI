@@ -199,19 +199,16 @@ PdfMultiPlot <- function(data) {
 #' a <- -L / 2
 #' b <- L / 2
 #' x <- seq(-5, 5, by = 10 / (32 - 1))
-#' f <- function(x) {
-#'   dnorm(x)
-#' }
-#' LogErrorCosPdf(x, f, NormChf, a, b, N)
+#' LogErrorCosPdf(x, dnorm, NormChf, a, b, N)
 LogErrorCosPdf <- function(x, f, Chf, a, b, N) {
   nn <- length(N)
   nl <- length(a)
-  if (nl != length(b)) {
+  if (nl != length(b)){
     print("length of a donnot equals to length of b!")
     return(NULL)
   }
   error <- matrix(0, nrow = nn, ncol = nl)
-  for (ii in seq_along(L)) {
+  for (ii in seq_along(a)) {
     f_x2 <- CosPdfMulti(x, Chf, N, a[ii], b[ii])
     lerror <- f(x) - f_x2
     error[, ii] <- log(timeSeries::colMaxs(abs(lerror)))
@@ -338,6 +335,7 @@ CosValueOption <- function(ValueOption, GBMChf, r, tau, N, a, b, method = "integ
 #' With global variable K, the strike price, calculate the value of European call option.
 #'
 #' @param x the stock price
+#' @param K the strike price
 #'
 #' @return The value of European call option
 #' @export

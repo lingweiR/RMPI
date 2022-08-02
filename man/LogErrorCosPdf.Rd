@@ -31,8 +31,5 @@ L <- c(10, 20, 60, 100, 1000)
 a <- -L / 2
 b <- L / 2
 x <- seq(-5, 5, by = 10 / (32 - 1))
-f <- function(x) {
-  dnorm(x)
-}
-LogErrorCosPdf(x, f, NormChf, a, b, N)
+LogErrorCosPdf(x, dnorm, NormChf, a, b, N)
 }
